@@ -19,12 +19,12 @@ public class Regine {
 	//            [0, 2, 1]
 	
 	private int N;
-	private List<Integer> soluzione;
+	private List<List<Integer>> soluzione;
 	
-	public List<Integer> risolvi(int N){
+	public List<List<Integer>>  risolvi(int N){
 		this.N=N;
 		List<Integer> parziale= new ArrayList<Integer>();//NO LINKED LIST PERCHè FACCIAMO GET sotto
-		this.soluzione=null;
+		this.soluzione=new ArrayList<>();
 		
 		cerca(parziale,0);
 		return this.soluzione;
@@ -32,13 +32,13 @@ public class Regine {
 	}
 	
 	//cerca=true--> trovato; cerca=false-->non ancora torvato, continua cerca
-	private boolean cerca(List<Integer>parziale, int livello) { //[0,6,4,7]
+	private void cerca(List<Integer>parziale, int livello) { //[0,6,4,7]
 		if(livello==N) {
 			// caso terminale
 			//System.out.println(parziale);
-			this.soluzione=new ArrayList<Integer>(parziale); //salvo la soluzione qui
+			this.soluzione.add(new ArrayList<Integer>(parziale)); //salvo la soluzione qui
 			//non devo salvare con il riferimento a parziale nel caso terminale
-			return true;
+			
 		} else {
 			for(int colonna=0; colonna<N; colonna++) {
 				// if la possa nella casella [livello][colonna] è valida
@@ -49,13 +49,11 @@ public class Regine {
 					
 					//posso anche fare una copia di parziale, così poi non metto il backtracking,
 					//ma è meno efficiente
-					boolean trovato=cerca(parziale,livello+1);//RICORSIONE
-					if (trovato)
-						return true;
+					cerca(parziale,livello+1);//RICORSIONE
+					
 					parziale.remove(parziale.size()-1); //BACKTRACKING tolgo dalla lista quello che ho appena provato
 				}
 			}
-			return false;
 		}
 	}
 
