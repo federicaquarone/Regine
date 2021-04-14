@@ -39,6 +39,9 @@ public class Regine {
 				
 				if (posValida(parziale,colonna)) {
 					parziale.add(colonna); //aggiungo numero al fondo della lista[0,6,4,7,1 o 5 xxx]
+					
+					//posso anche fare una copia di parziale, così poi non metto il backtracking,
+					//ma è meno efficiente
 					cerca(parziale,livello+1);//RICORSIONE
 					parziale.remove(parziale.size()-1); //BACKTRACKING tolgo dalla lista quello che ho appena provato
 				}
