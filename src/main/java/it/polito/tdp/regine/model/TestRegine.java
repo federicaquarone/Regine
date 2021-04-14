@@ -9,7 +9,7 @@ public static void main(String[] args) {
 	Regine r= new Regine();
 	
 	List<Integer> soluzione=new ArrayList<Integer>();
-	soluzione=r.risolvi(4);
+	soluzione=r.risolvi(6);
 	System.out.println(soluzione);
 }
 }
